@@ -33,12 +33,16 @@ Indian_Languages = {
 }
 
 # User inputs
-inputPrompt = "Describe the function of the liver in simple terms."
-output_language = "Tamil"
+inputPrompt = input("Enter a medical term or description: ")
+print("\n🗣️ Available Languages:")
+for lang in Indian_Languages.keys():
+    print(f" - {lang}")
+
+output_language = input("\nSelect Output Language: ")
 
 # Validate language input
 if output_language not in Indian_Languages:
-    print("Invalid language choice. Defaulting to Hindi.")
+    print("⚠️ Invalid language choice. Defaulting to Hindi.")
     output_language = "Hindi"
 
 # Get language codes

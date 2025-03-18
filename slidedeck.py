@@ -1,7 +1,8 @@
 import json
 import torch  # 🔹 Added torch import
 from elaborate import elaborate_text
-from translate import batch_translate, initialize_model_and_tokenizer, IndicProcessor
+from translate import batch_translate, initialize_model_and_tokenizer
+from IndicTransToolkit.processor import IndicProcessor
 
 # 📌 File to store vocabulary deck
 SLIDEDECK_FILE = "slidedeck.json"
@@ -44,7 +45,6 @@ SRC_LANG = "eng_Latn"  # English is fixed as source language
 ckpt_dir = "/workspace/MedicalEducationTranslationAI/Models/indictrans2"
 tokenizer, model = initialize_model_and_tokenizer(ckpt_dir, quantization)
 ip = IndicProcessor(inference=True)
-
 
 def save_to_slidedeck(word, output_language):
     """
@@ -96,14 +96,8 @@ def save_to_slidedeck(word, output_language):
 
     print("\n✅ Saved to slidedeck.json!")
 
-
 # 🔹 Run standalone
 if __name__ == "__main__":
     user_input = input("Enter a medical term: ")
-    print("\n🗣️ Available Languages:")
-    for lang in INDIAN_LANGUAGES.keys():
-        print(f" - {lang}")
-
-    output_language = input("\nSelect Output Language: ")
-
+    output_language = input("Select Output Language: ")
     save_to_slidedeck(user_input, output_language)
