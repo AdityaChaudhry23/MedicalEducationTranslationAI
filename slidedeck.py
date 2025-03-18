@@ -1,27 +1,76 @@
 import json
+import torch  # 🔹 Added torch import
 from elaborate import elaborate_text
-from translate import translate_to_hindi
+from translate import batch_translate, initialize_model_and_tokenizer, IndicProcessor
 
 # 📌 File to store vocabulary deck
 SLIDEDECK_FILE = "slidedeck.json"
 
-def save_to_slidedeck(word):
+# 📌 Define available language mapping
+INDIAN_LANGUAGES = {
+    "Assamese": "asm_Beng",
+    "Bengali": "ben_Beng",
+    "Bodo": "brx_Deva",
+    "Dogri": "doi_Deva",
+    "English": "eng_Latn",
+    "Gujarati": "guj_Gujr",
+    "Hindi": "hin_Deva",
+    "Kannada": "kan_Knda",
+    "Kashmiri (Arabic)": "kas_Arab",
+    "Kashmiri (Devanagari)": "kas_Deva",
+    "Maithili": "mai_Deva",
+    "Malayalam": "mal_Mlym",
+    "Manipuri (Bengali)": "mni_Beng",
+    "Manipuri (Meitei)": "mni_Mtei",
+    "Marathi": "mar_Deva",
+    "Nepali": "npi_Deva",
+    "Odia": "ory_Orya",
+    "Punjabi": "pan_Guru",
+    "Sanskrit": "san_Deva",
+    "Santali": "sat_Olck",
+    "Sindhi (Arabic)": "snd_Arab",
+    "Sindhi (Devanagari)": "snd_Deva",
+    "Tamil": "tam_Taml",
+    "Telugu": "tel_Telu",
+    "Urdu": "urd_Arab"
+}
+
+# 📌 Default configuration
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+quantization = None  # Adjust for "4-bit" or "8-bit" if needed
+SRC_LANG = "eng_Latn"  # English is fixed as source language
+
+# Initialize Model & Tokenizer
+ckpt_dir = "/workspace/MedicalEducationTranslationAI/Models/indictrans2"
+tokenizer, model = initialize_model_and_tokenizer(ckpt_dir, quantization)
+ip = IndicProcessor(inference=True)
+
+
+def save_to_slidedeck(word, output_language):
     """
-    Saves the given medical term, its Hindi translation, elaboration, and elaboration translation to slidedeck.json.
+    Saves the given medical term, its translation, elaboration, and elaboration translation to slidedeck.json.
     """
     print(f"\n📖 Processing: {word}")
 
+    # 🔹 Validate output language
+    if output_language not in INDIAN_LANGUAGES:
+        print(f"⚠️ Error: {output_language} is not supported. Please choose a valid language.")
+        return
+
+    # 🔹 Define target language code
+    tgt_lang = INDIAN_LANGUAGES[output_language]
+
     # 🔹 Step 1: Translate the Word
-    word_translation = translate_to_hindi(word)
-    print(f"🌍 Translation: {word} → {word_translation}")
+    word_translation = batch_translate([word], SRC_LANG, tgt_lang, model, tokenizer, ip)[0]
+    print(f"🌍 Translation ({output_language}): {word} → {word_translation}")
 
     # 🔹 Step 2: Elaborate the Word
     elaboration = elaborate_text(word)
     print(f"🩺 Elaboration: {elaboration}")
 
     # 🔹 Step 3: Translate the Elaboration
-    elaboration_translation = translate_to_hindi(elaboration)
-    print(f"🇮🇳 Hindi Meaning: {elaboration_translation}")
+    elaboration_translation = batch_translate([elaboration], SRC_LANG, tgt_lang, model, tokenizer, ip)[0]
+    print(f"🌍 Meaning Translation ({output_language}): {elaboration_translation}")
 
     # 🔹 Step 4: Store Data
     entry = {
@@ -47,7 +96,14 @@ def save_to_slidedeck(word):
 
     print("\n✅ Saved to slidedeck.json!")
 
+
 # 🔹 Run standalone
 if __name__ == "__main__":
     user_input = input("Enter a medical term: ")
-    save_to_slidedeck(user_input)
+    print("\n🗣️ Available Languages:")
+    for lang in INDIAN_LANGUAGES.keys():
+        print(f" - {lang}")
+
+    output_language = input("\nSelect Output Language: ")
+
+    save_to_slidedeck(user_input, output_language)
