@@ -1,0 +1,13 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment
+MedEdAIVenv/
+
+# Ignore model files (since they are large)
+Models/
+
+# Ignore IndicTransToolkit (since it's a submodule)
+
