@@ -1,0 +1,12 @@
+{
+    "Aditya123": {
+        "UserName": "Aditya",
+        "Password": "securepass",
+        "Mother Tongue": "Hindi"
+    },
+    "Rahul456": {
+        "UserName": "Rahul",
+        "Password": "password123",
+        "Mother Tongue": "Tamil"
+    }
+}

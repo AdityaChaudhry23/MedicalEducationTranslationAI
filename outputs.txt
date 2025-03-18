@@ -68,5 +68,10 @@
         "input": "Describe the function of the liver in simple terms.",
         "elaboration": "The liver is an organ located on the right side of the upper abdomen below the diaphragm. It plays a crucial role in digestion, metabolism, and detoxification. One of its main functions is to produce bile, which helps with the digestion of fats. Additionally, it also produces important proteins that help with blood clotting and other vital processes in the body. Overall, the liver is essential for maintaining good health and preventing disease.",
         "output": "கல்லீரல் என்பது வயிற்றின் மேற்புறத்தின் வலது பக்கத்தில் உதரவிதானத்தின் கீழ் அமைந்துள்ள ஒரு உறுப்பு. இது செரிமானம், வளர்சிதை மாற்றம் மற்றும் நச்சுத்தன்மையை நீக்குவதில் முக்கிய பங்கு வகிக்கிறது. அதன் முக்கிய செயல்பாடுகளில் ஒன்று பித்தத்தை உற்பத்தி செய்வதாகும், இது கொழுப்புகளை ஜீரணிக்க உதவுகிறது. கூடுதலாக, இது இரத்த உறைதல் மற்றும் உடலில் உள்ள பிற முக்கிய செயல்முறைகளுக்கு உதவும் முக்கியமான புரதங்களையும் உற்பத்தி செய்கிறது. ஒட்டுமொத்தமாக, கல்லீரல் நல்ல ஆரோக்கியத்தை பராமரிக்கவும் நோயைத் தடுக்கவும் அவசியம். "
+    },
+    {
+        "input": "Describe the function of the liver in simple terms.",
+        "elaboration": "The liver is an organ located on the right side of the upper abdomen below the diaphragm. It plays a crucial role in digestion, metabolism, and detoxification. One of its main functions is to produce bile, which helps with the digestion of fats. Additionally, it also produces important proteins that help with blood clotting and other vital processes in the body. Overall, the liver is essential for maintaining good health and preventing disease.",
+        "output": "கல்லீரல் என்பது வயிற்றின் மேற்புறத்தின் வலது பக்கத்தில் உதரவிதானத்தின் கீழ் அமைந்துள்ள ஒரு உறுப்பு. இது செரிமானம், வளர்சிதை மாற்றம் மற்றும் நச்சுத்தன்மையை நீக்குவதில் முக்கிய பங்கு வகிக்கிறது. அதன் முக்கிய செயல்பாடுகளில் ஒன்று பித்தத்தை உற்பத்தி செய்வதாகும், இது கொழுப்புகளை ஜீரணிக்க உதவுகிறது. கூடுதலாக, இது இரத்த உறைதல் மற்றும் உடலில் உள்ள பிற முக்கிய செயல்முறைகளுக்கு உதவும் முக்கியமான புரதங்களையும் உற்பத்தி செய்கிறது. ஒட்டுமொத்தமாக, கல்லீரல் நல்ல ஆரோக்கியத்தை பராமரிக்கவும் நோயைத் தடுக்கவும் அவசியம். "
     }
 ]
