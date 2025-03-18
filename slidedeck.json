@@ -1,0 +1,14 @@
+[
+    {
+        "input_word": "Cardiac Arrest",
+        "input_word_translation": "कार्डियक अरेस्ट ",
+        "meaning": "A cardiac arrest is an abrupt loss of heart function in a patient. It is caused by a problem with the heart's electrical system, which controls the rate and rhythm of the heartbeat. During a cardiac arrest, the heart stops pumping blood to the body. This can result in death if not treated within minutes. Cardiac arrest is different from a heart attack, where blood flow to the heart is blocked.",
+        "meaning_translation": "कार्डियक अरेस्ट एक रोगी में दिल के कार्य में अचानक कमी है। यह दिल की विद्युत प्रणाली में समस्या के कारण होता है, जो दिल की धड़कन की दर और लय को नियंत्रित करता है। कार्डियक अरेस्ट के दौरान, दिल शरीर में रक्त पंप करना बंद कर देता है। अगर मिनटों के भीतर इलाज नहीं किया जाता है तो इसके परिणामस्वरूप मृत्यु हो सकती है। कार्डियक अरेस्ट दिल के दौरे से अलग है, जहां दिल में रक्त का प्रवाह अवरुद्ध हो जाता है। "
+    },
+    {
+        "input_word": "Heart Attack",
+        "input_word_translation": "दिल का दौरा ",
+        "meaning": "A heart attack occurs when blood flow to the heart is blocked, usually by a blood clot (most common) or spasm of the coronary artery. This can cause damage to the heart muscle. The longer the blockage goes untreated, the more damage will occur. Symptoms include chest pain, shortness of breath, nausea/vomiting, lightheadedness, and sweating. Treatment involves restoring blood flow to the heart as soon as possible. This may involve medications such as nitroglycerin, aspirin, or clopidogrel, or procedures such as angioplasty or stenting. It's important to seek immediate medical attention if you suspect you're having a heart attack.",
+        "meaning_translation": "दिल का दौरा तब पड़ता है जब दिल में रक्त का प्रवाह अवरुद्ध हो जाता है, आमतौर पर रक्त के थक्के (सबसे आम) या कोरोनरी धमनी की ऐंठन से। इससे दिल की मांसपेशियों को नुकसान हो सकता है। जितनी देर तक रुकावट का इलाज नहीं किया जाता है, उतना ही अधिक नुकसान होगा। लक्षणों में सीने में दर्द, सांस की तकलीफ, मतली/उल्टी, सिरदर्द और पसीना शामिल हैं। इलाज में जल्द से जल्द दिल में रक्त प्रवाह बहाल करना शामिल है। इसमें नाइट्रोग्लिसरीन, एस्पिरिन या क्लोपिडोग्रेल जैसी दवाएं या एंजियोप्लास्टी या स्टेंटिंग जैसी प्रक्रियाएं शामिल हो सकती हैं। यदि आपको संदेह है कि आपको दिल का दौरा पड़ रहा है तो तत्काल चिकित्सा सहायता लेना महत्वपूर्ण है। "
+    }
+]

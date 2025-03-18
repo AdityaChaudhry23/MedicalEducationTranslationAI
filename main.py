@@ -3,7 +3,7 @@ from elaborate import elaborate_text
 from translate import translate_to_hindi
 
 # 📝 Hardcoded Input (MVP)
-inputPrompt = "Explain the difference between ECG and EEG"
+inputPrompt = "Heart Attack"
 
 # 📌 Dictionary to store results
 input_translate_output = {
