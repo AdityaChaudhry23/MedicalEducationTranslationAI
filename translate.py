@@ -7,19 +7,18 @@ BATCH_SIZE = 4
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 quantization = None  # Set to "4-bit" or "8-bit" if needed for quantization
 
-# Initialize Model and Tokenizer
 def initialize_model_and_tokenizer(ckpt_dir, quantization):
     if quantization == "4-bit":
         qconfig = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_compute_dtype=torch.bfloat16,
+            load_in_4bit=True,
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_compute_dtype=torch.bfloat16,
         )
     elif quantization == "8-bit":
         qconfig = BitsAndBytesConfig(
-        load_in_8bit=True,
-        bnb_8bit_use_double_quant=True,
-        bnb_8bit_compute_dtype=torch.bfloat16,
+            load_in_8bit=True,
+            bnb_8bit_use_double_quant=True,
+            bnb_8bit_compute_dtype=torch.bfloat16,
         )
     else:
         qconfig = None
@@ -32,13 +31,18 @@ def initialize_model_and_tokenizer(ckpt_dir, quantization):
         quantization_config=qconfig,
     )
 
-    if qconfig == None:
+    # 🔧 Patch for missing vocab_size in IndicTrans2 config
+    if not hasattr(model.config, "vocab_size"):
+        model.config.vocab_size = model.get_input_embeddings().weight.shape[0]
+
+    if qconfig is None:
         model = model.to(DEVICE)
         if DEVICE == "cuda":
             model.half()
 
     model.eval()
     return tokenizer, model
+
 
 # Batch translation
 def batch_translate(input_sentences, src_lang, tgt_lang, model, tokenizer, ip):
