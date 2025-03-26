@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical Translator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen">
+  <div class="max-w-xl mx-auto mt-10 bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold mb-4 text-center">🩺 Medical Translator</h1>
+
+    <form method="POST" class="space-y-4">
+      <div>
+        <label class="block font-medium">Username:</label>
+        <input name="username" class="w-full p-2 border rounded-md" required />
+      </div>
+
+      <div>
+        <label class="block font-medium">Medical Text:</label>
+        <textarea name="input_text" class="w-full p-2 border rounded-md" rows="3" required></textarea>
+      </div>
+
+      <div>
+        <label class="block font-medium">Target Language:</label>
+        <select name="language" class="w-full p-2 border rounded-md" required>
+          <option value="Hindi">Hindi</option>
+          <option value="Tamil">Tamil</option>
+          <option value="Odia">Odia</option>
+        </select>
+      </div>
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+        Translate & Explain
+      </button>
+    </form>
+
+    {% if result %}
+    <div class="mt-6">
+      <h2 class="text-lg font-bold mb-2">Result:</h2>
+      <p><strong>Input:</strong> {{ result.input }}</p>
+      <p><strong>Elaboration:</strong> {{ result.elaboration }}</p>
+      <p><strong>Translated Output:</strong> {{ result.output }}</p>
+    </div>
+    {% endif %}
+
+    {% if history %}
+    <div class="mt-6">
+      <h2 class="text-lg font-bold mb-2">History for {{ username }}:</h2>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        {% for item in history %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
