@@ -28,3 +28,6 @@ LANGUAGE_CODE_MAP = {
     "Telugu": "tel_Telu",
     "Urdu": "urd_Arab"
 }
+
+def get_language_list():
+    return sorted(LANGUAGE_CODE_MAP.keys())
