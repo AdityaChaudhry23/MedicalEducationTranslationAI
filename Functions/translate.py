@@ -1,6 +1,6 @@
 import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from IndicTransToolkit.processor import IndicProcessor
+from IndicTransToolkit.processor import IndicProcessor # type: ignore
 
 # Constants
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
