@@ -1,0 +1,12 @@
+# Ignore model weights
+Models/*
+
+# Ignore virtual env
+MedEdAI/
+__pycache__/
+*.pyc
+*.ipynb_checkpoints
+
+# Optional: VSCode / PyCharm files
+.vscode/
+.idea/
