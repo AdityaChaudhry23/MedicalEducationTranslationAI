@@ -5,6 +5,7 @@ annotated-types==0.7.0
 anyio==4.9.0
 babel==2.17.0
 bitsandbytes==0.45.4
+blinker==1.9.0
 certifi==2025.1.31
 charset-normalizer==3.4.1
 click==8.1.8
@@ -16,6 +17,7 @@ exceptiongroup==1.2.2
 fastapi==0.115.12
 ffmpy==0.5.0
 filelock==3.18.0
+Flask==3.1.0
 fonttools==4.56.0
 fpdf==1.7.2
 fpdf2==2.8.2
@@ -30,9 +32,9 @@ httpx==0.28.1
 huggingface-hub==0.29.3
 idna==3.10
 imagesize==1.4.1
-indic_nlp_library_IT2==0.0.2
-## !! Could not determine repository location
--e /workspace/MedicalEducationTranslationAI/IndicTransToolkit
+indic_nlp_library_IT2 @ git+https://github.com/VarunGumma/indic_nlp_library.git@342a7e95735e88949528bdca371518cb0ba5bb5d
+-e git+ssh://git@github.com/AdityaChaudhry23/MedicalEducationTranslationAI.git@8c818d8c4db61cc1f7fac941a98188e2f59f8d31#egg=IndicTransToolkit&subdirectory=IndicTransToolkit
+itsdangerous==2.2.0
 Jinja2==3.1.6
 joblib==1.4.2
 lxml==5.3.1
@@ -98,6 +100,7 @@ sphinxcontrib-serializinghtml==2.0.0
 starlette==0.46.1
 sympy==1.13.1
 tabulate==0.9.0
+tinydb==4.8.2
 tokenizers==0.21.1
 tomli==2.2.1
 tomlkit==0.13.2
@@ -106,8 +109,10 @@ tqdm==4.67.1
 transformers==4.50.1
 triton==3.2.0
 typer==0.15.2
+typing-inspection==0.4.0
 typing_extensions==4.12.2
 tzdata==2025.2
 urllib3==2.3.0
 uvicorn==0.34.0
 websockets==15.0.1
+Werkzeug==3.1.3
