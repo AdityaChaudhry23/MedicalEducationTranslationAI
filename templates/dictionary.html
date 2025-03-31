@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dictionary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6 min-h-screen">
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
+    <!-- 🔙 Back Button -->
+    <a href="/dashboard" class="inline-block mb-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded">
+        ← Back to Dashboard
+      </a>
+    <h1 class="text-2xl font-bold mb-4">📚 Personal Dictionary</h1>
+    <form method="POST" class="space-y-4">
+      <input type="text" name="word" required class="w-full p-2 border rounded" placeholder="Enter a medical term" />
+      <select name="language" required class="w-full p-2 border rounded-md">
+        {% for lang in languages %}
+          <option value="{{ lang }}" {% if lang == default_lang %}selected{% endif %}>{{ lang }}</option>
+        {% endfor %}
+      </select>      
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add to Dictionary</button>
+    </form>
+
+    {% if result %}
+    <div class="mt-6 bg-gray-50 p-4 rounded-md">
+      <h2 class="font-semibold text-lg">Entry:</h2>
+      <p><strong>Word:</strong> {{ result.input_word }}</p>
+      <p><strong>Translation:</strong> {{ result.input_word_translation }}</p>
+      <p><strong>Meaning:</strong> {{ result.meaning }}</p>
+      <p><strong>Meaning (Translated):</strong> {{ result.meaning_translation }}</p>
+    </div>
+    {% endif %}
+
+    {% if slides %}
+    <div class="mt-8">
+      <h2 class="font-semibold text-lg mb-2">📖 Your Dictionary Entries</h2>
+      <ul class="list-disc ml-5 text-sm space-y-1">
+        {% for s in slides %}
+        <li>
+          <strong>Term:</strong> {{ s.input }} → {{ s.input_translated }}<br />
+          <strong>Explanation:</strong> {{ s.elaboration }}<br />
+          <strong>Translated:</strong> {{ s.translated_elaboration }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

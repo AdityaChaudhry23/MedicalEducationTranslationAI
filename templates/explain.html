@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Explain</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6 min-h-screen">
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
+    <!-- 🔙 Back Button -->
+    <a href="/dashboard" class="inline-block mb-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded">
+        ← Back to Dashboard
+      </a>
+    <h1 class="text-2xl font-bold mb-4">🩺 Explanation Tool</h1>
+    <form method="POST" class="space-y-4">
+      <textarea name="input_text" rows="3" required class="w-full p-2 border rounded" placeholder="Enter medical term or question"></textarea>
+      <select name="language" required class="w-full p-2 border rounded-md">
+        {% for lang in languages %}
+          <option value="{{ lang }}" {% if lang == default_lang %}selected{% endif %}>{{ lang }}</option>
+        {% endfor %}
+      </select>      
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Translate & Explain</button>
+    </form>
+
+    {% if result %}
+    <div class="mt-6 bg-gray-50 p-4 rounded-md">
+      <h2 class="font-semibold text-lg">Result:</h2>
+      <p><strong>Input:</strong> {{ result.input }}</p>
+      <p><strong>Elaboration:</strong> {{ result.elaboration }}</p>
+      <p><strong>Translated:</strong> {{ result.output }}</p>
+    </div>
+    {% endif %}
+
+    {% if history %}
+    <div class="mt-8">
+      <h2 class="font-semibold text-lg mb-2">🕘 Your History</h2>
+      <ul class="list-disc ml-5 text-sm space-y-1">
+        {% for h in history %}
+        <li>
+          <strong>Input:</strong> {{ h.input }}<br />
+          <strong>Elaboration:</strong> {{ h.elaboration }}<br />
+          <strong>Output:</strong> {{ h.output }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

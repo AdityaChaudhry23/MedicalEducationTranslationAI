@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="bg-white p-6 rounded-lg shadow-md text-center">
+    <h2 class="text-2xl font-bold mb-4">Hello, {{ name }} 👋</h2>
+    <div class="space-y-4">
+      <a href="/explain" class="block bg-blue-600 text-white py-2 rounded hover:bg-blue-700">🩺 Explanation</a>
+      <a href="/dictionary" class="block bg-green-600 text-white py-2 rounded hover:bg-green-700">📚 Personal Dictionary</a>
+      <a href="/logout" class="block bg-red-500 text-white py-2 rounded hover:bg-red-600">🔓 Logout</a>
+    </div>
+  </div>
+</body>
+</html>

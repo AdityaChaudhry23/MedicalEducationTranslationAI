@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-4">📝 Register</h1>
+    <form method="POST" class="space-y-4">
+      <input name="user_id" placeholder="User ID" required class="w-full p-2 border rounded-md" />
+      <input name="name" placeholder="Full Name" required class="w-full p-2 border rounded-md" />
+      <input name="password" type="password" placeholder="Password" required class="w-full p-2 border rounded-md" />
+
+      <select name="mother_tongue" class="w-full p-2 border rounded-md" required>
+        <option value="">Select Mother Tongue</option>
+        {% for lang in languages %}
+          <option value="{{ lang }}">{{ lang }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit" class="w-full bg-green-600 text-white p-2 rounded-md hover:bg-green-700">
+        Register
+      </button>
+    </form>
+    <p class="mt-4 text-center text-sm">
+      Already have an account? <a href="/" class="text-blue-600 hover:underline">Login</a>
+    </p>
+  </div>
+</body>
+</html>

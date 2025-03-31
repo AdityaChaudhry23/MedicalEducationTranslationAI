@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Slides | MedEdAI{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">📊 Slide Deck</h1>
+
+{% if slides %}
+<div class="space-y-4">
+  {% for s in slides %}
+  <div class="p-4 bg-gray-50 rounded shadow">
+    <p><strong>Input:</strong> {{ s.input }}</p>
+    <p><strong>Input Translated:</strong> {{ s.input_translated }}</p>
+    <p><strong>Elaboration:</strong> {{ s.elaboration }}</p>
+    <p><strong>Translated Elaboration:</strong> {{ s.translated_elaboration }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="text-gray-600">No slides created yet.</p>
+{% endif %}
+{% endblock %}
