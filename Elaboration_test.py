@@ -1,9 +1,22 @@
+# Elaboration_test.py
+
 import time
 import os
 import json
+import torch
 from Functions.pipelines import Explanation_Pipeline
+from comet import download_model, load_from_checkpoint
 
-# 🔹 Test medical questions (like the ones you shared)
+# ⚙️ Optional: Set precision trade-off to improve matmul performance on GPU
+torch.set_float32_matmul_precision('high')  # Options: 'highest', 'high', 'medium'
+
+# 🔁 Load COMET model
+print("🔁 Loading COMET model...")
+model_path = download_model("Unbabel/wmt22-cometkiwi-da")
+model = load_from_checkpoint(model_path)
+print("✅ COMET model loaded!\n")
+
+# 🧪 Sample questions
 test_inputs = [
     "Describe Cardiac Arrest in simple terms.",
     "Describe the function of the liver in simple terms.",
@@ -17,18 +30,16 @@ test_inputs = [
     "How do vaccines prevent diseases?"
 ]
 
-# 🔸 Output storage
-results = []
-
-# 🌐 Language for translation
 target_language = "Hindi"
+results = []
+comet_batch = []
 
-# 🧪 Run test
-print("🔍 Running Explanation_Pipeline tests...\n")
+print("🚀 Running Explanation_Pipeline tests...\n")
 
 for input_text in test_inputs:
-    print(f"📝 Processing: {input_text}")
+    print(f"🔹 Processing: {input_text}")
     start_time = time.time()
+
     try:
         result = Explanation_Pipeline(input_text, target_language)
         end_time = time.time()
@@ -36,26 +47,55 @@ for input_text in test_inputs:
         results.append({
             "input": result["input"],
             "elaboration": result["elaboration"],
-            "output": result["output"],
+            "translation": result["output"],
             "time_taken_sec": round(end_time - start_time, 2)
+        })
+
+        comet_batch.append({
+            "src": result["elaboration"],
+            "mt": result["output"]
         })
 
     except Exception as e:
         end_time = time.time()
+        err_msg = str(e)
         results.append({
             "input": input_text,
             "elaboration": "[Error]",
-            "output": str(e),
+            "translation": err_msg,
+            "comet_score": "N/A",
             "time_taken_sec": round(end_time - start_time, 2)
         })
+        comet_batch.append({
+            "src": "[Error]",
+            "mt": err_msg
+        })
 
-# 📁 Ensure directory exists
+# 🧠 COMET scoring
+# 🧠 COMET scoring
+print("\n🧠 Scoring translations with COMET...")
+prediction = model.predict(comet_batch, batch_size=8, gpus=1)
+
+# Extract individual scores from the dict
+if isinstance(prediction, dict) and "scores" in prediction:
+    comet_scores = prediction["scores"]
+else:
+    comet_scores = prediction[0] if isinstance(prediction, tuple) else prediction
+
+# 🔁 Attach scores
+for i, score in enumerate(comet_scores):
+    try:
+        results[i]["comet_score"] = round(float(score), 4)
+    except (ValueError, TypeError):
+        results[i]["comet_score"] = "N/A"
+        print(f"⚠️ COMET score for index {i} is invalid: {score}")
+
+
+# 💾 Save results
 os.makedirs("Tests", exist_ok=True)
-
-# 💾 Save results to Output.txt
 with open("Tests/Output.txt", "w", encoding="utf-8") as f:
     for item in results:
         f.write(json.dumps(item, ensure_ascii=False, indent=2))
         f.write("\n\n")
 
-print("\n✅ Test complete. Results saved to Tests/Output.txt")
+print("\n✅ All test cases processed and saved to Tests/Output.txt")
